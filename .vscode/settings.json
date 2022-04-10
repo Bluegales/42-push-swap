@@ -1,0 +1,13 @@
+{
+	"files.associations": {
+		"parse_map.h": "c",
+		"point.h": "c",
+		"mlx_data.h": "c",
+		"mlx.h": "c",
+		"stdio.h": "c",
+		"s_mlx.h": "c",
+		"draw_line.h": "c",
+		"draw_linked_points.h": "c",
+		"s_points.h": "c"
+	}
+}
