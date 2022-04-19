@@ -8,6 +8,18 @@
 		"s_mlx.h": "c",
 		"draw_line.h": "c",
 		"draw_linked_points.h": "c",
-		"s_points.h": "c"
+		"s_points.h": "c",
+		"*.tcc": "c",
+		"cmath": "c",
+		"type_traits": "c",
+		"typeinfo": "c",
+		"apply_command.h": "c",
+		"stack.h": "c",
+		"stdlib.h": "c",
+		"commands.h": "c",
+		"operation.h": "c",
+		"reverse_sorting.h": "c",
+		"sort_groups.h": "c",
+		"sort_groups_helper.h": "c"
 	}
 }

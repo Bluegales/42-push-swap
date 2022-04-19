@@ -1,18 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_arguments.h                                  :+:      :+:    :+:   */
+/*   sort_groups.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pfuchs <pfuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/10 12:17:12 by pfuchs            #+#    #+#             */
-/*   Updated: 2022/04/15 18:16:29 by pfuchs           ###   ########.fr       */
+/*   Created: 2022/04/16 18:26:26 by pfuchs            #+#    #+#             */
+/*   Updated: 2022/04/18 20:48:16 by pfuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSE_ARGUMENTS_H
-# define PARSE_ARGUMENTS_H
+#ifndef SORT_GROUPS_H
+# define SORT_GROUPS_H
 
-int	parse_arguments(int argc, char **argv, unsigned int *stack);
+typedef struct s_group {
+	short		*number_group;
+	short		*group_sizes;
+	short		group_count;
+}	t_group;
 
-#endif // PARSE_ARGUMENTS_H
+typedef struct s_group_data {
+	short	number_count;
+	short	last_group;
+	t_group	real_groups[6];
+	t_group	push_groups[6];
+}	t_group_data;
+
+int		get_sort_groups(t_group_data *groups);
+
+#endif // SORT_GROUPS_H

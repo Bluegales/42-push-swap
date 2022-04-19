@@ -6,7 +6,7 @@
 #    By: pfuchs <pfuchs@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/10 12:13:51 by pfuchs            #+#    #+#              #
-#    Updated: 2022/04/10 17:22:12 by pfuchs           ###   ########.fr        #
+#    Updated: 2022/04/19 18:27:04 by pfuchs           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,9 @@ CFLAGSS	= -Wall -Wextra -Werror -g
 INCFLAG	= -Imlx -I include -I libft
 # File Variables
 NAME	= push_swap
-SRC		= main.c parse_arguments.c apply_operation.c
+SRC		= main.c parse_arguments.c commands.c commands_print.c stack.c stack_2.c \
+			push_swap.c sort.c operation_finish.c\
+			sort_groups.c sort_groups_helper.c sort_groups_helper_split.c sort_small.c
 OBJ		= $(addprefix _bin/,$(notdir $(SRC:.c=.o)))
 
 $(NAME): $(OBJ) | libft/libft.a

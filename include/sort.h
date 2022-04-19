@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_arguments.h                                  :+:      :+:    :+:   */
+/*   sort.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pfuchs <pfuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/10 12:17:12 by pfuchs            #+#    #+#             */
-/*   Updated: 2022/04/15 18:16:29 by pfuchs           ###   ########.fr       */
+/*   Created: 2022/04/18 20:45:26 by pfuchs            #+#    #+#             */
+/*   Updated: 2022/04/19 19:25:33 by pfuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSE_ARGUMENTS_H
-# define PARSE_ARGUMENTS_H
+#ifndef B7BCDA9F_92EC_4016_B140_A1FFE35692BA
+#define B7BCDA9F_92EC_4016_B140_A1FFE35692BA
 
-int	parse_arguments(int argc, char **argv, unsigned int *stack);
+typedef struct s_group_data	t_group_data;
+typedef struct s_stack		t_stack;
 
-#endif // PARSE_ARGUMENTS_H
+void	sort(t_group_data *groups, t_stack *s1, t_stack *s2);
+void	sort_small(t_stack *s1, t_stack *s2);
+
+#endif /* B7BCDA9F_92EC_4016_B140_A1FFE35692BA */

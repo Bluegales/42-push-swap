@@ -6,46 +6,44 @@
 /*   By: pfuchs <pfuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 12:15:06 by pfuchs            #+#    #+#             */
-/*   Updated: 2022/04/10 14:44:49 by pfuchs           ###   ########.fr       */
+/*   Updated: 2022/04/17 20:26:51 by pfuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse_arguments.h"
 
 #include <limits.h>
-
+#include <stack.h>
 #include "libft.h"
-
 
 
 #include <stdio.h>
 
-static int	get_int(char *str, int *ret_number)
+static int	get_uint(char *str, unsigned int *ret_number)
 {
-	int		i;
 	int		sign;
 
-	sign = -1;
+	sign = 0;
+	if (*str == '-')
+		sign = 1;
 	if (*str == '-' || *str == '+')
-	{
-		if (*str == '-')
-			sign = 1;
 		str++;
-	}
-	if (!*str)
-		return (1);
+	if (ft_strlen(str) > 10 || ft_strlen(str) == 0)
+		return (2);
+	if (ft_strlen(str) == 10 && ft_strncmp(str, "2147483648", 11) > 0)
+		return (2);
+	if (ft_strlen(str) == 10 && sign == 1 && ft_strncmp(str, "2147483647", 11) > 0)
+		return (2);
 	*ret_number = 0;
 	while (*str)
 	{
 		if (*str < '0' || *str > '9')
 			return (1);
-		i = *ret_number;
-		*ret_number = *ret_number * 10 - (*str - '0');
-		if (*ret_number > 0)
-			return (2);
+		*ret_number = *ret_number * 10 + (*str - '0');
 		str++;
 	}
-	*ret_number *= sign;
+	if (!sign)
+		*ret_number -= INT_MIN;
 	return (0);
 }
 
@@ -80,13 +78,6 @@ static void	reduce(unsigned int *stack, int size)
 			}
 		}
 		i++;
-		// int k = 0;
-		// while (k < size)
-		// {
-		// 	printf("%u\n", stack[k]);
-		// 	k++;
-		// }
-		// printf("\n");
 	}
 }
 
@@ -106,19 +97,23 @@ static int	check_for_dupes(unsigned int *stack, int size)
 
 int	parse_arguments(int argc, char **argv, unsigned int *stack)
 {
-	int		i;
-	int		n;
+	int				i;
 
 	i = 0;
 	while (i < argc - 1)
 	{
-		if (get_int(argv[i + 1], &n))
+		if (get_uint(argv[i + 1], stack + i))
 			return (2);
-		stack[i] = n - INT_MIN;
 		i++;
 	}
 	reduce(stack, argc - 1);
 	if (check_for_dupes(stack, argc - 1))
-		return (1);
+		return (3);
+	i = 0;
+	while (i < argc - 1)
+	{
+		stack[i]--;
+		i++;
+	}
 	return (0);
 }

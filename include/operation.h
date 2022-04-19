@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   apply_operation.h                                  :+:      :+:    :+:   */
+/*   operation.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pfuchs <pfuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/10 14:47:14 by pfuchs            #+#    #+#             */
-/*   Updated: 2022/04/10 17:43:21 by pfuchs           ###   ########.fr       */
+/*   Created: 2022/04/15 18:16:31 by pfuchs            #+#    #+#             */
+/*   Updated: 2022/04/18 20:49:20 by pfuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef APPLY_OPERATION_H
-# define APPLY_OPERATION_H
+#ifndef OPERATION_H
+# define OPERATION_H
 
 typedef struct s_stack	t_stack;
+typedef struct s_group	t_group;
 
-typedef int (*f_operation)(t_stack);
+typedef struct s_push_sort {
+	t_stack		*src;
+	t_stack		*dest;
+	int			count;
+	int			push_offset;
+	int			sort_offset;
+}	t_push_sort;
 
-const static f_operation	operations[] = {
-	swap_a;
-};
+int	operation_push_sort(t_push_sort data);
+void	operation_finish(t_group *d, t_stack *s1, t_stack *s2);
+void	operation_step(t_group *d, t_stack *dst, t_stack *src);
 
-enum e_operation{ sa=0, sb=1, ss=2,	pa=3, pb=4, ra=5, rb=6, rr=7, rra=8, rb=9,
-	rrr=10
-};
-
-#endif // APPLY_OPERATION_H
+#endif // OPERATION_H

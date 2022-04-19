@@ -1,0 +1,63 @@
+0 1 8 9		p	p	swap	push	rotate	push	rotate
+0 1 9 8		p	p	swap
+0 8 1 9		p	p r
+0 8 9 1		p	p r
+0 9 1 8		p	p
+0 9 8 1		p	p
+
+1 0 8 9		p	p	p
+1 0 9 8		p	p	p
+1 8 0 9		p	p	p
+1 8 9 0		p	p	p
+1 9 0 8		p	p	p
+1 9 8 0		p	p	p
+
+8 1 0 9		p rotate
+8 1 9 0		p rotate
+8 0 1 9		p rotate
+8 0 9 1		p rotate
+8 9 1 0		p rotate	p rotate
+8 9 0 1		p rotate	p rotate
+
+9 1 8 0		p	p
+9 1 0 8		p	p
+9 8 1 0		p	p
+9 8 0 1		p	p
+9 0 1 8		p	p
+9 0 8 1		p	p
+
+0 9 swap
+9 0 -
+8 0 -
+0 8 swap
+8 9 -
+9 8 swap
+
+0 1
+
+48 49 50 51
+
+
+8 * 4 = 32
+8 * 2 * 2 * 2 = 64
+8 * 4 * 2 * 2 = 128
+8 * 4 * 4 * 2 = 256
+8 * 4 * 4 * 4 = 512
+8 * 4 * 4 * 2 * 2 * 2 = 1024
+
+4
+8
+16
+32
+64
+128
+
+0123
+0132
+0132
+0123
+
+3012
+
+
+0123

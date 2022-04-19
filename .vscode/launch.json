@@ -10,14 +10,14 @@
 		"request": "launch",
 		"program": "${workspaceFolder}/push_swap",
 		"args": [
-			"1000", "2"
+			"1000", "2", "1", "3", "5", "8", "9", "11", "0"
 		],
 		"stopAtEntry": true,
 		"cwd": "${workspaceFolder}",
 		"environment": [
 		],
 		"externalConsole": false,
-		"MIMode": "lldb",
+		"MIMode": "gdb",
 		"asd": "asd"
 		//"preLaunchTask": "clang++ build active file"
 	  }
