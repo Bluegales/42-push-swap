@@ -6,7 +6,7 @@
 /*   By: pfuchs <pfuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 21:17:04 by pfuchs            #+#    #+#             */
-/*   Updated: 2022/04/19 21:05:46 by pfuchs           ###   ########.fr       */
+/*   Updated: 2022/04/26 22:55:48 by pfuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ enum e_merge_command {
 	error = 11
 };
 
-static const char *command_strings[] = {
+static const char	*g_command_strings[] = {
 	"sa",
 	"ra",
 	"rra",
@@ -47,7 +47,8 @@ static const char *command_strings[] = {
 	"ERR"
 };
 
-static enum e_merge_command	get_next_command_same(t_commands *cmd1, t_commands *cmd2)
+static enum e_merge_command	get_next_command_same(t_commands *cmd1,
+	t_commands *cmd2)
 {
 	enum e_merge_command	command;
 
@@ -105,7 +106,7 @@ static int	fill_print(enum e_merge_command *commands, char *print, int size)
 	print_it = print;
 	while (i < size)
 	{
-		command_it = command_strings[commands[i]];
+		command_it = g_command_strings[commands[i]];
 		while (*command_it)
 		{
 			*print_it = *command_it;
@@ -119,7 +120,6 @@ static int	fill_print(enum e_merge_command *commands, char *print, int size)
 	*print_it = '\n';
 	return ((int)(print_it - print));
 }
-
 
 int	commands_print(t_commands cmd1, t_commands cmd2)
 {

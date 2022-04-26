@@ -6,7 +6,7 @@
 /*   By: pfuchs <pfuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 13:27:01 by pfuchs            #+#    #+#             */
-/*   Updated: 2022/04/17 13:09:06 by pfuchs           ###   ########.fr       */
+/*   Updated: 2022/04/26 22:40:04 by pfuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,13 @@ int	commands_set_array_size(t_commands *commands, int allocation_size)
 	new_array = malloc(sizeof(t_command_data) * allocation_size);
 	if (!new_array)
 		return (2);
-	ft_memcpy(new_array, commands->array, commands->size * sizeof(t_command_data));
+	ft_memcpy(new_array, commands->array,
+		commands->size * sizeof(t_command_data));
 	free(commands->array);
 	commands->array = new_array;
 	commands->array_size = allocation_size;
 	return (0);
 }
-
-#include <stdio.h>
 
 int	commands_push(t_commands *commands, enum e_command command, int *index)
 {
@@ -61,7 +60,7 @@ int	commands_push(t_commands *commands, enum e_command command, int *index)
 		if (commands_set_array_size(commands, 100 + commands->size))
 			return (1);
 	}
-	commands->array[commands->size] = (t_command_data) {command, *index};
+	commands->array[commands->size] = (t_command_data){command, *index};
 	commands->size++;
 	if (command != pull)
 		(*index)++;

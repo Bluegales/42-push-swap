@@ -6,7 +6,7 @@
 /*   By: pfuchs <pfuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 18:16:10 by pfuchs            #+#    #+#             */
-/*   Updated: 2022/04/19 19:35:01 by pfuchs           ###   ########.fr       */
+/*   Updated: 2022/04/26 23:42:08 by pfuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ static int	init_groups(t_group_data *groups, int n)
 	groups->number_count = n;
 	while (i < 6)
 	{
-		groups->push_groups[i].number_group = ft_calloc(sizeof(short), n);
-		groups->real_groups[i].number_group = ft_calloc(sizeof(short), n);
-		groups->push_groups[i].group_sizes = ft_calloc(sizeof(short), 1 + n / 4);
-		groups->real_groups[i].group_sizes = ft_calloc(sizeof(short), 1 + n / 4);
+		groups->push_groups[i].number_group = ft_calloc(2UL, n);
+		groups->real_groups[i].number_group = ft_calloc(2UL, n);
+		groups->push_groups[i].group_sizes = ft_calloc(2UL, 1 + n / 4);
+		groups->real_groups[i].group_sizes = ft_calloc(2UL, 1 + n / 4);
 		if (!groups->push_groups[i].number_group
 			|| !groups->real_groups[i].number_group
 			|| !groups->push_groups[i].group_sizes
@@ -66,6 +66,22 @@ static int	init_groups(t_group_data *groups, int n)
 	return (error);
 }
 
+static int	is_sorted(t_stack *s1)
+{
+	int	i;
+
+	i = 0;
+	while (i < s1->data_size)
+	{
+		if (i != (int)(s1->data[i]))
+		{
+			return (0);
+		}
+		i++;
+	}
+	return (1);
+}
+
 int	push_swap(t_stack *s1, t_stack *s2)
 {
 	t_group_data	groups;
@@ -73,10 +89,10 @@ int	push_swap(t_stack *s1, t_stack *s2)
 
 	if (s1->data_size <= 5)
 	{
-		//printf("small %d\n", s1->data_size);
 		sort_small(s1, s2);
+		return (0);
 	}
-	else
+	while (!is_sorted(s1))
 	{
 		if (init_groups(&groups, s1->data_size))
 			return (1);
@@ -85,26 +101,7 @@ int	push_swap(t_stack *s1, t_stack *s2)
 			return (1);
 		sort(&groups, s1, s2);
 	}
+	cleanup_groups(&groups);
 	commands_print(s1->commands, s2->commands);
-	return 0;
-
-	//stack_print(s1, 20, 1);
-	//printf("-- getting sort group\n");
-
-	//printf("-- done getting groups\n");
-
-	//operation_step(groups+2, s2, s1);
-	//stack_print(s2, 8, 1);
-	//operation_finish(groups, s1, s2);
-	//stack_print(s1, 20, 1);
-	//operation_finish(groups, s1, s2);
-	//operation_finish(groups, s2, s1);
-	//commands_print(s1->commands, s2->commands);
-	//printf("final stack\n");
-	//stack_print(s2, 16, 1);
-	//printf("size: %d\n", *s1->command_index);
-
-	//cleanup_groups(&groups);
-	//printf("exit push_swap\n");
-
+	return (0);
 }

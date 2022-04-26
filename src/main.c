@@ -6,7 +6,7 @@
 /*   By: pfuchs <pfuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 12:14:22 by pfuchs            #+#    #+#             */
-/*   Updated: 2022/04/19 01:53:01 by pfuchs           ###   ########.fr       */
+/*   Updated: 2022/04/26 23:42:50 by pfuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	cleanup(t_stack *s1, t_stack *s2)
 
 static int	init(t_stack *s1, t_stack *s2, int *command_index, int argc)
 {
-	int error;
+	int	error;
 
 	error = 0;
 	*command_index = 0;
@@ -33,6 +33,8 @@ static int	init(t_stack *s1, t_stack *s2, int *command_index, int argc)
 	error += stack_init(s2, argc * 2, command_index);
 	return (error);
 }
+
+#include "stdio.h"
 
 int	main(int argc, char **argv)
 {
@@ -49,7 +51,7 @@ int	main(int argc, char **argv)
 		cleanup(&s1, &s2);
 		return (1);
 	}
-	if (parse_arguments(argc, argv, s1.array))
+	if (parse_arguments(&argc, argv, s1.array))
 	{
 		cleanup(&s1, &s2);
 		return (2);
@@ -58,5 +60,6 @@ int	main(int argc, char **argv)
 	s1.data_size = argc - 1;
 	push_swap(&s1, &s2);
 	cleanup(&s1, &s2);
+	scanf("asd");
 	return (0);
 }

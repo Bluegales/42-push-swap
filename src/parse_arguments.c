@@ -6,18 +6,17 @@
 /*   By: pfuchs <pfuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 12:15:06 by pfuchs            #+#    #+#             */
-/*   Updated: 2022/04/17 20:26:51 by pfuchs           ###   ########.fr       */
+/*   Updated: 2022/04/26 22:47:20 by pfuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse_arguments.h"
 
 #include <limits.h>
-#include <stack.h>
+#include <stdlib.h>
+
+#include "stack.h"
 #include "libft.h"
-
-
-#include <stdio.h>
 
 static int	get_uint(char *str, unsigned int *ret_number)
 {
@@ -32,7 +31,8 @@ static int	get_uint(char *str, unsigned int *ret_number)
 		return (2);
 	if (ft_strlen(str) == 10 && ft_strncmp(str, "2147483648", 11) > 0)
 		return (2);
-	if (ft_strlen(str) == 10 && sign == 1 && ft_strncmp(str, "2147483647", 11) > 0)
+	if (ft_strlen(str) == 10 && sign == 1
+		&& ft_strncmp(str, "2147483647", 11) > 0)
 		return (2);
 	*ret_number = 0;
 	while (*str)
@@ -45,40 +45,6 @@ static int	get_uint(char *str, unsigned int *ret_number)
 	if (!sign)
 		*ret_number -= INT_MIN;
 	return (0);
-}
-
-static void	reduce(unsigned int *stack, int size)
-{
-	int				i;
-	int				j;
-	unsigned int	lowest;
-
-	i = 0;
-	while (i < size)
-	{
-		j = 0;
-		lowest = UINT_MAX;
-		while (j < size)
-		{
-			if (lowest > stack[j] && stack[j] > (unsigned int)i)
-				lowest = stack[j];
-			j++;
-		}
-		j = 0;
-		if ((lowest != UINT_MAX && lowest != (unsigned int)i) || i == 0)
-		{
-			while (j < size)
-			{
-				if (stack[j] > (unsigned int)i)
-				{
-					stack[j] -= lowest - 1;
-					stack[j] += i;
-				}
-				j++;
-			}
-		}
-		i++;
-	}
 }
 
 static int	check_for_dupes(unsigned int *stack, int size)
@@ -95,25 +61,50 @@ static int	check_for_dupes(unsigned int *stack, int size)
 	return (1);
 }
 
-int	parse_arguments(int argc, char **argv, unsigned int *stack)
+static int	handle_stack(char **numbers, unsigned int *stack, int size)
 {
-	int				i;
+	int	i;
 
 	i = 0;
-	while (i < argc - 1)
+	while (i < size)
 	{
-		if (get_uint(argv[i + 1], stack + i))
+		if (get_uint(numbers[i], stack + i))
 			return (2);
 		i++;
 	}
-	reduce(stack, argc - 1);
-	if (check_for_dupes(stack, argc - 1))
+	reduce(stack, size);
+	if (check_for_dupes(stack, size))
 		return (3);
 	i = 0;
-	while (i < argc - 1)
+	while (i < size)
 	{
 		stack[i]--;
 		i++;
 	}
 	return (0);
+}
+
+int	parse_arguments(int *argc, char **argv, unsigned int *stack)
+{
+	int			size;
+	int			error;
+	char		**numbers;
+
+	if (ft_strchr(argv[1], ' ') != NULL)
+	{
+		numbers = ft_strsplit(argv[1], " ");
+		size = 0;
+		while (numbers[size])
+		{
+			size++;
+		}
+		error = handle_stack(numbers, stack, size);
+		size = 0;
+		while (numbers[size])
+			free(numbers[size++]);
+		free(numbers);
+		*argc = size + 1;
+		return (error);
+	}
+	return (handle_stack(argv + 1, stack, *argc - 1));
 }

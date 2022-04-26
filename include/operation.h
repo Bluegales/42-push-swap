@@ -6,7 +6,7 @@
 /*   By: pfuchs <pfuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 18:16:31 by pfuchs            #+#    #+#             */
-/*   Updated: 2022/04/18 20:49:20 by pfuchs           ###   ########.fr       */
+/*   Updated: 2022/04/26 22:38:13 by pfuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct s_push_sort {
 	int			sort_offset;
 }	t_push_sort;
 
-int	operation_push_sort(t_push_sort data);
+int		operation_push_sort(t_push_sort data);
 void	operation_finish(t_group *d, t_stack *s1, t_stack *s2);
 void	operation_step(t_group *d, t_stack *dst, t_stack *src);
 

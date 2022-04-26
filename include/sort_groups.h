@@ -6,12 +6,14 @@
 /*   By: pfuchs <pfuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 18:26:26 by pfuchs            #+#    #+#             */
-/*   Updated: 2022/04/18 20:48:16 by pfuchs           ###   ########.fr       */
+/*   Updated: 2022/04/26 23:31:49 by pfuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SORT_GROUPS_H
 # define SORT_GROUPS_H
+
+typedef struct s_stack	t_stack;
 
 typedef struct s_group {
 	short		*number_group;

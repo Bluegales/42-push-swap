@@ -6,14 +6,14 @@
 /*   By: pfuchs <pfuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 17:23:08 by pfuchs            #+#    #+#             */
-/*   Updated: 2022/04/16 19:56:11 by pfuchs           ###   ########.fr       */
+/*   Updated: 2022/04/26 22:38:51 by pfuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STACK_H
 # define STACK_H
 
-#include "commands.h"
+# include "commands.h"
 
 typedef struct s_stack
 {
