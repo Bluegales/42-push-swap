@@ -6,7 +6,7 @@
 /*   By: pfuchs <pfuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 18:16:10 by pfuchs            #+#    #+#             */
-/*   Updated: 2022/04/26 23:42:08 by pfuchs           ###   ########.fr       */
+/*   Updated: 2022/04/27 01:03:55 by pfuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ int	push_swap(t_stack *s1, t_stack *s2)
 	if (s1->data_size <= 5)
 	{
 		sort_small(s1, s2);
+		commands_print(s1->commands, s2->commands);
 		return (0);
 	}
 	while (!is_sorted(s1))

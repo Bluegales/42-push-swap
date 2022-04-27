@@ -6,7 +6,7 @@
 /*   By: pfuchs <pfuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 16:44:54 by pfuchs            #+#    #+#             */
-/*   Updated: 2022/04/26 22:51:05 by pfuchs           ###   ########.fr       */
+/*   Updated: 2022/04/27 02:58:12 by pfuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,23 +31,23 @@ static void	sort_3(t_stack *s1)
 	}
 }
 
-static void	sort_5_(t_stack *s1, t_stack *s2,
-	unsigned int min, unsigned int max)
+static void	sort_5_2(t_stack *s1, t_stack *s2,
+	unsigned int *min, unsigned int *max)
 {
 	int	i;
 
 	i = 0;
 	while (i < s1->data_size)
 	{
-		if (s1->data[i] < min)
-			min = s1->data[i];
-		if (s1->data[i] > max)
-			max = s1->data[i];
+		if (s1->data[i] < *min)
+			*min = s1->data[i];
+		if (s1->data[i] > *max)
+			*max = s1->data[i];
 		i++;
 	}
 	while (s1->data_size > 3)
 	{
-		if (s1->data[0] == min || s1->data[0] == max)
+		if (s1->data[0] == *min || s1->data[0] == *max)
 			stack_push(s2, s1);
 		else
 			stack_rotate(s1);
@@ -61,7 +61,7 @@ static void	sort_5(t_stack *s1, t_stack *s2)
 
 	min = s1->data[0];
 	max = s1->data[0];
-	sort_5_(s1, s2, min, max);
+	sort_5_2(s1, s2, &min, &max);
 	sort_3(s1);
 	while (s2->data_size != 0)
 	{

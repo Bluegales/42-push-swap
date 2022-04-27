@@ -6,7 +6,7 @@
 /*   By: pfuchs <pfuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 22:28:37 by pfuchs            #+#    #+#             */
-/*   Updated: 2022/04/26 23:31:31 by pfuchs           ###   ########.fr       */
+/*   Updated: 2022/04/27 01:17:46 by pfuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,35 +76,6 @@ void	set_group(t_group_data *groups, t_group_set_data d, t_stack *stack)
 		i++;
 	}
 	set_group_sizes(groups, d);
-}
-
-void	count_splits(int n, int *split2, int *split4)
-{
-	*split2 = 0;
-	*split4 = 0;
-	if (n <= 16)
-		*split2 = 1;
-	else if (n <= 32)
-		*split4 = 1;
-	else if (n <= 64)
-		*split2 = 3;
-	else if (n <= 128)
-	{
-		*split4 = 1;
-		*split2 = 2;
-	}
-	else if (n <= 256)
-	{
-		*split4 = 2;
-		*split2 = 1;
-	}
-	else if (n <= 256)
-	{
-		*split4 = 2;
-		*split2 = 1;
-	}
-	else if (n <= 512)
-		*split4 = 3;
 }
 
 int	init(t_stack *s1, t_stack *s2, int size)

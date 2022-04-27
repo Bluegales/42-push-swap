@@ -6,7 +6,7 @@
 /*   By: pfuchs <pfuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 15:16:15 by pfuchs            #+#    #+#             */
-/*   Updated: 2022/04/26 23:31:44 by pfuchs           ###   ########.fr       */
+/*   Updated: 2022/04/27 01:17:08 by pfuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	split_end_8(t_stack *dst, t_stack *src);
 void	split_4(t_stack *dst, t_stack *src);
 void	split_2(t_stack *dst, t_stack *src);
 void	set_group(t_group_data *groups, t_group_set_data d, t_stack *stack);
-void	count_splits(int n, int *split2, int *split4);
 int		init(t_stack *s1, t_stack *s2, int size);
 
 #endif // SORT_GROUPS_HELPER_H

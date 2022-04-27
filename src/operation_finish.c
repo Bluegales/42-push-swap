@@ -6,7 +6,7 @@
 /*   By: pfuchs <pfuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 22:33:22 by pfuchs            #+#    #+#             */
-/*   Updated: 2022/04/26 23:40:59 by pfuchs           ###   ########.fr       */
+/*   Updated: 2022/04/27 02:34:20 by pfuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,17 @@ typedef struct s_step_data
 	int		group_id;
 	int		stack_size;
 }	t_step_data;
+
+static void	step_value_sw(t_step_data *d, int *rotation_count, int *push_count)
+{
+	if (*push_count - *rotation_count >= 2)
+	{
+		if (d->dst->data[0] - d->dst->data[1] == 1)
+			stack_swap(d->dst);
+		if ((int)d->dst->data[0] - (int)d->dst->data[1] < -1)
+			stack_swap(d->dst);
+	}
+}
 
 static void	step_value(t_step_data *d, int *rotation_count, int *push_count)
 {
@@ -51,13 +62,7 @@ static void	step_value(t_step_data *d, int *rotation_count, int *push_count)
 			(*rotation_count)++;
 		}
 	}
-	if (*push_count - *rotation_count >= 2)
-	{
-		if (d->dst->data[0] - d->dst->data[1] == 1)
-			stack_swap(d->dst);
-		if ((int)d->dst->data[0] - (int)d->dst->data[1] < -1)
-			stack_swap(d->dst);
-	}
+	step_value_sw(d, rotation_count, push_count);
 }
 
 static void	finish_group(t_group *d, t_stack *dst, t_stack *src, int group_id)

@@ -6,7 +6,7 @@
 /*   By: pfuchs <pfuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 18:13:42 by pfuchs            #+#    #+#             */
-/*   Updated: 2022/04/26 23:34:52 by pfuchs           ###   ########.fr       */
+/*   Updated: 2022/04/27 01:17:24 by pfuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#include "count_splits.h"
 #include "stack.h"
 #include "libft.h"
 
