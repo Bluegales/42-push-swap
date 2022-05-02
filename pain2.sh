@@ -1,7 +1,7 @@
 #!/bin/bash
-NBR_COUNT=10001
+NBR_COUNT=4000
 ##
-NBR="1 2"
+#NBR="1 2"
 RES=OK
 while [ "$(./push_swap $NBR | ./checker_Mac $NBR)" = "OK" ]
 do

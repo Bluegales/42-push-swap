@@ -6,7 +6,7 @@
 /*   By: pfuchs <pfuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 12:15:06 by pfuchs            #+#    #+#             */
-/*   Updated: 2022/04/26 22:47:20 by pfuchs           ###   ########.fr       */
+/*   Updated: 2022/05/02 13:04:10 by pfuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 #include <limits.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "stack.h"
 #include "libft.h"
@@ -31,7 +32,7 @@ static int	get_uint(char *str, unsigned int *ret_number)
 		return (2);
 	if (ft_strlen(str) == 10 && ft_strncmp(str, "2147483648", 11) > 0)
 		return (2);
-	if (ft_strlen(str) == 10 && sign == 1
+	if (ft_strlen(str) == 10 && sign == 0
 		&& ft_strncmp(str, "2147483647", 11) > 0)
 		return (2);
 	*ret_number = 0;
@@ -42,8 +43,12 @@ static int	get_uint(char *str, unsigned int *ret_number)
 		*ret_number = *ret_number * 10 + (*str - '0');
 		str++;
 	}
-	if (!sign)
-		*ret_number -= INT_MIN;
+	*ret_number = *ret_number + (unsigned int)INT_MAX + 1;
+	if (sign)
+		*ret_number = UINT_MAX - *ret_number + 1;
+	// if (!sign)
+	// 	*ret_number -= INT_MIN;
+	// printf("%u\n", *ret_number);
 	return (0);
 }
 
@@ -54,7 +59,7 @@ static int	check_for_dupes(unsigned int *stack, int size)
 	i = 0;
 	while (i < size)
 	{
-		if (stack[i] == (unsigned int)size)
+		if (stack[i] == (unsigned int)size - 1)
 			return (0);
 		i++;
 	}
@@ -75,12 +80,6 @@ static int	handle_stack(char **numbers, unsigned int *stack, int size)
 	reduce(stack, size);
 	if (check_for_dupes(stack, size))
 		return (3);
-	i = 0;
-	while (i < size)
-	{
-		stack[i]--;
-		i++;
-	}
 	return (0);
 }
 

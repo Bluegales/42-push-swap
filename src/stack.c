@@ -6,7 +6,7 @@
 /*   By: pfuchs <pfuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 18:16:01 by pfuchs            #+#    #+#             */
-/*   Updated: 2022/04/27 07:54:46 by pfuchs           ###   ########.fr       */
+/*   Updated: 2022/05/02 14:30:03 by pfuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,48 +82,49 @@ int	stack_swap(t_stack *stack)
 	return (0);
 }
 
-// Only needed for debugging purpose
-// #include "stdio.h"
+//Only needed for debugging purpose
 
-// void	stack_print(t_stack *stack, int new_line, int rest_top)
-// {
-// 	int i = 0;
-// 	int rest = stack->data_size % (new_line * 2);
-// 	if (rest_top == 2)
-// 	{
-// 		while (i < (stack->data_size - rest) / 2)
-// 		{
-// 			if (i % new_line == 0 && i)
-// 				printf("\n");
-// 			printf("%3u ", stack->data[i]);
-// 			i++;
-// 		}
-// 		if (rest)
-// 			printf("\n");
-// 		if (rest && rest < new_line)
-// 			printf("\n");
-// 		while (i < stack->data_size)
-// 		{
-// 			if ((stack->data_size - i) % new_line == 0)
-// 					printf("\n");
-// 			printf("%3u ", stack->data[i]);
-// 			i++;
-// 		}
-// 	}
-// 	while (i < stack->data_size)
-// 	{
-// 		if (rest_top)
-// 		{
-// 			if ((stack->data_size - i) % new_line == 0 && i)
-// 				printf("\n");
-// 		}
-// 		else
-// 		{
-// 			if (i % new_line == 0 && i)
-// 				printf("\n");
-// 		}
-// 		printf("%3u ", stack->data[i]);
-// 			i++;
-// 	}
-// 	printf("\n");
-// }
+#include "stdio.h"
+
+void	stack_print(t_stack *stack, int new_line, int rest_top)
+{
+	int i = 0;
+	int rest = stack->data_size % (new_line * 2);
+	if (rest_top == 2)
+	{
+		while (i < (stack->data_size - rest) / 2)
+		{
+			if (i % new_line == 0 && i)
+				printf("\n");
+			printf("%3u ", stack->data[i]);
+			i++;
+		}
+		if (rest)
+			printf("\n");
+		if (rest && rest < new_line)
+			printf("\n");
+		while (i < stack->data_size)
+		{
+			if ((stack->data_size - i) % new_line == 0)
+					printf("\n");
+			printf("%3u ", stack->data[i]);
+			i++;
+		}
+	}
+	while (i < stack->data_size)
+	{
+		if (rest_top)
+		{
+			if ((stack->data_size - i) % new_line == 0 && i)
+				printf("\n");
+		}
+		else
+		{
+			if (i % new_line == 0 && i)
+				printf("\n");
+		}
+		printf("%3u ", stack->data[i]);
+			i++;
+	}
+	printf("\n");
+}

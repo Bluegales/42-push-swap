@@ -6,7 +6,7 @@
 /*   By: pfuchs <pfuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 18:16:10 by pfuchs            #+#    #+#             */
-/*   Updated: 2022/04/27 01:03:55 by pfuchs           ###   ########.fr       */
+/*   Updated: 2022/05/02 11:03:18 by pfuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	push_swap(t_stack *s1, t_stack *s2)
 		commands_print(s1->commands, s2->commands);
 		return (0);
 	}
-	while (!is_sorted(s1))
+	while (1)
 	{
 		if (init_groups(&groups, s1->data_size))
 			return (1);
@@ -101,8 +101,11 @@ int	push_swap(t_stack *s1, t_stack *s2)
 		if (steps < 0)
 			return (1);
 		sort(&groups, s1, s2);
+		if (is_sorted(s1))
+		{
+			cleanup_groups(&groups);
+			commands_print(s1->commands, s2->commands);
+			return (0);
+		}
 	}
-	cleanup_groups(&groups);
-	commands_print(s1->commands, s2->commands);
-	return (0);
 }
