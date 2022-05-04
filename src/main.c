@@ -6,7 +6,7 @@
 /*   By: pfuchs <pfuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 12:14:22 by pfuchs            #+#    #+#             */
-/*   Updated: 2022/05/02 14:32:14 by pfuchs           ###   ########.fr       */
+/*   Updated: 2022/05/04 15:17:33 by pfuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,6 @@ int	main(int argc, char **argv)
 	}
 	if (parse_arguments(&argc, argv, s1.array))
 	{
-		// s1.data = s1.array;
-		// s1.data_size = argc - 1;
-		// stack_print(&s1, 20, 0);
 		cleanup(&s1, &s2);
 		fprintf(stderr, "Error\n");
 		return (2);

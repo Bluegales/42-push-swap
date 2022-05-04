@@ -6,7 +6,7 @@
 /*   By: pfuchs <pfuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/27 07:29:32 by pfuchs            #+#    #+#             */
-/*   Updated: 2022/04/27 07:56:47 by pfuchs           ###   ########.fr       */
+/*   Updated: 2022/05/04 15:15:51 by pfuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ int	get_commands(t_stack *s1, t_stack *s2)
 		size_read = read(0, buffer, 4);
 		if (size_read == -1)
 		{
-			write(1, "ERROR\n", 6);
+			write(2, "ERROR\n", 6);
 			return (1);
 		}
 		find_eol(&size_read, buffer);
@@ -145,7 +145,7 @@ int	get_commands(t_stack *s1, t_stack *s2)
 			i++;
 		if (i == error)
 		{
-			write(1, "ERROR\n", 6);
+			write(2, "ERROR\n", 6);
 			return (1);
 		}
 		if (apply_command(s1, s2, i))

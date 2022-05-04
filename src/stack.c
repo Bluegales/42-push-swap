@@ -6,7 +6,7 @@
 /*   By: pfuchs <pfuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 18:16:01 by pfuchs            #+#    #+#             */
-/*   Updated: 2022/05/02 14:30:03 by pfuchs           ###   ########.fr       */
+/*   Updated: 2022/05/04 15:19:01 by pfuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	stack_swap(t_stack *stack)
 
 //Only needed for debugging purpose
 
-#include "stdio.h"
+/* #include "stdio.h"
 
 void	stack_print(t_stack *stack, int new_line, int rest_top)
 {
@@ -127,4 +127,4 @@ void	stack_print(t_stack *stack, int new_line, int rest_top)
 			i++;
 	}
 	printf("\n");
-}
+} */

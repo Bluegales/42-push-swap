@@ -6,7 +6,7 @@
 /*   By: pfuchs <pfuchs@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 12:15:06 by pfuchs            #+#    #+#             */
-/*   Updated: 2022/05/02 13:04:10 by pfuchs           ###   ########.fr       */
+/*   Updated: 2022/05/04 15:21:01 by pfuchs           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,18 @@
 #include "stack.h"
 #include "libft.h"
 
+static void	set_sign(int *sign, char *str)
+{
+	*sign = 0;
+	if (*str == '-')
+		*sign = 1;
+}
+
 static int	get_uint(char *str, unsigned int *ret_number)
 {
 	int		sign;
 
-	sign = 0;
-	if (*str == '-')
-		sign = 1;
+	set_sign(&sign, str);
 	if (*str == '-' || *str == '+')
 		str++;
 	if (ft_strlen(str) > 10 || ft_strlen(str) == 0)
@@ -46,9 +51,6 @@ static int	get_uint(char *str, unsigned int *ret_number)
 	*ret_number = *ret_number + (unsigned int)INT_MAX + 1;
 	if (sign)
 		*ret_number = UINT_MAX - *ret_number + 1;
-	// if (!sign)
-	// 	*ret_number -= INT_MIN;
-	// printf("%u\n", *ret_number);
 	return (0);
 }
 
