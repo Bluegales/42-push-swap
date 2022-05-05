@@ -1,6 +1,6 @@
 # 42-push-swap
 
-The Push swap project is a simple algorithm project. 
+The Push swap project is a simple algorithm project.
 A "stack" with n amount of non-repeating random integers has to be sorted with the help of another "stack".
 The goal is to find a solution with the lowest amount of operations possible.
 Although they are called stacks in this project, they aren't limited to LIFO.
@@ -16,7 +16,7 @@ https://user-images.githubusercontent.com/72362902/166651251-4310a0bf-09b2-4944-
 - pb (push b): Take the first element at the top of a and put it at the top of b.
 - ra (rotate a): Shift up all elements of stack a by 1. First  becomes  last.
 - rb (rotate b): Shift up all elements of stack b by 1. First  becomes  last.
-- rr : ra and rb at the same time. 
+- rr : ra and rb at the same time.
 - rra (reverse rotate a): Shift down all elements of stack a by 1. Last  becomes  first.
 - rrb (reverse rotate b): Shift down all elements of stack b by 1. Last  becomes  first.
 - rrr : rra and rrb at the same time.
@@ -47,7 +47,7 @@ the option to rotate A. This splits the numbers into 4 Groups.
 These groups get treated as a single number for the rotation of the operation.
 <br>
 Example:
-- 128 Numbers in A 
+- 128 Numbers in A
 - 32 Groups in B
 - 8 Groups in A
 - 2 Groups in B
@@ -73,7 +73,8 @@ A few optimizations have been used, for example only splitting into 2 groups whe
 Both n and Operations are in k<br>
 For "low" amount of numbers the amount of operations is roughly n * 13, however without the optimizations the amount of operations is:<br>
 (log(n) / log(4)) * 1.5n<br>
-The big O notation should be O(n log n)
-
-
-
+The big O notation should be O(n log n)<br>
+During the evaluation, only very small stacks are tested.<br>
+100 will result in something very close to 700 operations.<br>
+500 is something around 4000 operations<br>
+Since there are still minor bugs in my implementation, it will result in slightly higher numbers.
